@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: Pidgeot
+  m_EditorClassIdentifier: 
+  monsterName: Pidgeot
+  description: 
+  frontSprite: {fileID: 21300000, guid: b681f645d52375149a012b1664d14dce, type: 3}
+  backSprite: {fileID: 21300000, guid: ae98da815df7a4f47a55f1b4432f6817, type: 3}
+  type: 0
+  maxHP: 100
+  attack: 90
+  defense: 70
+  spAttack: 60
+  spDefense: 60
+  speed: 90
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: 1f42749f0256335439d95c28d7242d41, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 2946154ee6497eb46a7cac9fa3337be4, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 0f52fc842bbbd984f820a8d45d967eee, type: 2}
+    level: 0

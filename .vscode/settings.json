@@ -17,9 +17,6 @@
         "**/*.wav": true,
         "**/*.gif": true,
         "**/*.ico": true,
-        //"**/*.jpg": true,
-        //"**/*.jpeg": true,
-        //"**/*.png": true,
         "**/*.psd": true,
         "**/*.tga": true,
         "**/*.tif": true,
@@ -34,13 +31,12 @@
         "**/*.MA": true,
         "**/*.obj": true,
         "**/*.OBJ": true,
-        //"**/*.asset": true,
         "**/*.cubemap": true,
         "**/*.flare": true,
         "**/*.mat": true,
-        "**/*.meta": true,
+        //"**/*.meta": true,
         "**/*.prefab": true,
-        "**/*.unity": true,
+        //"**/*.unity": true,
         "build/": true,
         "Build/": true,
         "Library/": true,
@@ -51,5 +47,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "My_Pokemon_Quizz.sln"
+    "dotnet.defaultSolution": "Pokemon_DSA_Quiz.sln"
 }

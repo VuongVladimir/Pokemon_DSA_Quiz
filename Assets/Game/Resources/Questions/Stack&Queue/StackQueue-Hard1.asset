@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: StackQueue-Hard1
+  m_EditorClassIdentifier: 
+  question: "M\u1ED9t Deque (Double Ended Queue) kh\xE1c Queue b\xECnh th\u01B0\u1EDDng
+    nh\u01B0 th\u1EBF n\xE0o?"
+  questionType: 5
+  answers:
+  - correctAnswer: 1
+    answer: "Deque cho ph\xE9p ch\xE8n v\xE0 x\xF3a \u1EDF c\u1EA3 hai \u0111\u1EA7u"
+  - correctAnswer: 0
+    answer: "Deque ch\u1EC9 cho ph\xE9p x\xF3a \u1EDF \u0111\u1EA7u"
+  - correctAnswer: 0
+    answer: "Deque kh\xF4ng h\u1ED7 tr\u1EE3 x\xF3a"
+  - correctAnswer: 0
+    answer: "Deque ch\u1EC9 cho ph\xE9p th\xEAm \u1EDF \u0111u\xF4i"

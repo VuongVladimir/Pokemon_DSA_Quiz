@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Trong danh s\xE1ch li\xEAn k\u1EBFt \u0111\u01A1n, m\u1ED7i ph\u1EA7n
     t\u1EED c\xF3 bao nhi\xEAu li\xEAn k\u1EBFt ?"
-  questionType: 0
+  questionType: 1
   answers:
   - correctAnswer: 0
     answer: "Kh\xF4ng c\xF3 li\xEAn k\u1EBFt"

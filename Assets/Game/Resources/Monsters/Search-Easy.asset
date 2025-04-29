@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: Search-Easy
+  m_EditorClassIdentifier: 
+  monsterName: Search Ez
+  description: 
+  frontSprite: {fileID: 21300000, guid: a47e33a027892b24db8d9c6f23b0acac, type: 3}
+  backSprite: {fileID: 21300000, guid: 2b7277e70fb2598489324516028cbb34, type: 3}
+  type: 0
+  maxHP: 120
+  attack: 70
+  defense: 70
+  spAttack: 50
+  spDefense: 50
+  speed: 70
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: f44a8c7ef5320ff4a977d8c31716c224, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: c2db44c097299d94fb1fb455429a37bc, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: fee0e294ae99ba040a2e152e53c03899, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 3e50a88542162a44cadc0172104c7c9f, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 02dedbf54ad9e3c4abc4ace06ff05000, type: 2}
+    level: 0

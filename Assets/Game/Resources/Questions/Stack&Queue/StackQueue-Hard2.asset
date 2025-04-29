@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: StackQueue-Hard2
+  m_EditorClassIdentifier: 
+  question: "Thu\u1EADt to\xE1n n\xE0o s\u1EED d\u1EE5ng Stack \u0111\u1EC3 ki\u1EC3m
+    tra t\xEDnh \u0111\u1ED1i x\u1EE9ng (Palindrome) c\u1EE7a m\u1ED9t chu\u1ED7i?"
+  questionType: 5
+  answers:
+  - correctAnswer: 0
+    answer: BFS
+  - correctAnswer: 0
+    answer: Stack Inversion
+  - correctAnswer: 0
+    answer: Stack Traversal
+  - correctAnswer: 1
+    answer: Stack-based Palindrome check

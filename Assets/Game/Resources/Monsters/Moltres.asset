@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: Moltres
+  m_EditorClassIdentifier: 
+  monsterName: Moltres
+  description: "\"10 \u0111i\u1EC3m x\xE1c xu\u1EA5t th\u1ED1ng k\xEA nh\u01B0ng
+    kh\xF4ng c\xF3 \u0111\u01B0\u1EE3c em :(((\""
+  frontSprite: {fileID: 21300000, guid: 562dd34fa0f1ac540a08369a7498caed, type: 3}
+  backSprite: {fileID: 21300000, guid: d12497f4cf3d8d745934d1a8cc9b1a95, type: 3}
+  type: 0
+  maxHP: 100
+  attack: 150
+  defense: 65
+  spAttack: 90
+  spDefense: 69
+  speed: 100
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 4
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: c6d80c0833f32bc41aa04f4bccfa7797, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 25aead9853aa9a147bd17e0b10e2c05d, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 45eafe6f7245df04985a8cfb35d8d551, type: 2}
+    level: 0

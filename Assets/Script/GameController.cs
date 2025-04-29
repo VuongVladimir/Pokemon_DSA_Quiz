@@ -33,6 +33,14 @@ public class GameController : MonoBehaviour
     void EndBattle(bool won)
     {
         state = GameState.FreeRoam;
+        
+        // Đảm bảo cập nhật HP đầy đủ cho Player sau trận đấu nếu thắng
+        if (won)
+        {
+            // HP đã được cập nhật trong BattleSystem, nhưng chúng ta đảm bảo nó cũng được đồng bộ ở đây
+            playerController.player.HealFull();
+        }
+        
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
     }

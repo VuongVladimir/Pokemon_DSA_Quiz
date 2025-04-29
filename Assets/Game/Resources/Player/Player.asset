@@ -17,9 +17,9 @@ MonoBehaviour:
   frontSprite: {fileID: 0}
   backSprite: {fileID: 21300000, guid: ffeabe011f724c1498cba1612d25db06, type: 3}
   type: 0
-  maxHP: 45
-  attack: 50
-  defense: 40
+  maxHP: 200
+  attack: 100
+  defense: 100
   spAttack: 60
   spDefense: 60
   speed: 60
@@ -28,4 +28,6 @@ MonoBehaviour:
     level: 0
   - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
     level: 0
+  - moveBase: {fileID: 11400000, guid: f59790dfd41ea7847bd20bddd3a51c88, type: 2}
+    level: 30
   learnAbleQuestions: []

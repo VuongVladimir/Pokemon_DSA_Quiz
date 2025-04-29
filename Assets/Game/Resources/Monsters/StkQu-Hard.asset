@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: StkQu-Hard
+  m_EditorClassIdentifier: 
+  monsterName: StkQu Meme Hard
+  description: 
+  frontSprite: {fileID: 21300000, guid: 51a6351a1c6f82249b82e245e58e01ec, type: 3}
+  backSprite: {fileID: 21300000, guid: 92a6778bc29906042a6ac129af374182, type: 3}
+  type: 0
+  maxHP: 200
+  attack: 130
+  defense: 120
+  spAttack: 60
+  spDefense: 50
+  speed: 50
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: 1b1300c94cc271f4fa0ab1664f553df6, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: b10bd67ea02257c4aadff5a1faef9a2e, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: f8e744f00b49f55428d523a15531648b, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 8ac206ac3c8e0c14d8c3d4fe8b88ab3d, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: ae86b215995945d468bd8871e7c16ee2, type: 2}
+    level: 0

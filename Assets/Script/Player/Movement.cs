@@ -8,7 +8,10 @@ using Random = UnityEngine.Random;
 public class Movement : MonoBehaviour
 {
     public float movementSpeed;
+    [SerializeField] private float runSpeedMultiplier = 2f; // Hệ số tăng tốc khi chạy
     private Boolean isMoving;
+    private Boolean isRunning; // Biến theo dõi trạng thái chạy
+    private Boolean wasRunning; // Biến để theo dõi thay đổi trạng thái chạy
     private Vector2 input;
     private Animator animator;
     public LayerMask solidObjLayer;
@@ -21,6 +24,7 @@ public class Movement : MonoBehaviour
     public Monster player;
     
     [SerializeField] bool debugMode = true;
+    [SerializeField] private bool showRunningIndicator = true; // Hiển thị chỉ báo chạy trên màn hình
 
     public event Action<MonsterBase, Monster, Collider2D> onEncountered;
 
@@ -38,6 +42,21 @@ public class Movement : MonoBehaviour
 
     public void HandleUpdate()
     {
+        // Lưu trạng thái chạy cũ
+        wasRunning = isRunning;
+        
+        // Cập nhật trạng thái chạy
+        isRunning = Input.GetButton("Fire3"); // Fire3 là nút Shift
+        
+        // Hiển thị thông báo khi trạng thái chạy thay đổi
+        if (isRunning != wasRunning && debugMode)
+        {
+            if (isRunning)
+                Debug.Log("Đang chạy với tốc độ x" + runSpeedMultiplier);
+            else
+                Debug.Log("Đã chuyển về tốc độ đi bộ bình thường");
+        }
+        
         if (!isMoving)
         {
             //Take input from player
@@ -83,10 +102,13 @@ public class Movement : MonoBehaviour
     IEnumerator Move(Vector3 targetPos)
     {
         isMoving = true;
+        
+        // Sử dụng biến isRunning đã được cập nhật trong HandleUpdate
+        float currentSpeed = isRunning ? movementSpeed * runSpeedMultiplier : movementSpeed;
 
         while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, movementSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, currentSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPos;
@@ -148,6 +170,16 @@ public class Movement : MonoBehaviour
                 MonsterBase randomMonster = encounterList.GetRandomMonster();
                 if (debugMode) Debug.Log($"Gặp monster ngẫu nhiên: {randomMonster.Name}");
                 
+                // Tạo monster với level tương ứng
+                Monster wildMonster = new Monster(randomMonster, player.Level <= 5 ? player.Level + Random.Range(0, 3) : (Random.Range(0, 2) == 0 ? player.Level + Random.Range(0, 3) : player.Level - Random.Range(0, 3)));
+                
+                // Hiển thị thông tin cơ bản của monster
+                Debug.Log($"===== THÔNG TIN MONSTER =====");
+                Debug.Log($"Tên: {wildMonster.Base.Name} | Level: {wildMonster.Level} | Type: {wildMonster.Base.Type}");
+                Debug.Log($"HP: {wildMonster.HP}/{wildMonster.MaxHP} | Attack: {wildMonster.Attack} | Defense: {wildMonster.Defense}");
+                Debug.Log($"SpAttack: {wildMonster.SpAttack} | SpDefense: {wildMonster.SpDefense} | Speed: {wildMonster.Speed}");
+                Debug.Log($"=============================");
+                
                 onEncountered(randomMonster, player, null);
             }
         }
@@ -156,7 +188,28 @@ public class Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.gameObject.tag == "Monster"){
             ListMonsters monsters = collision.GetComponent<ListMonsters>();
+            
+            // Tạo monster với level tương ứng
+            Monster wildMonster = new Monster(monsters.Monster, player.Level <= 5 ? player.Level + Random.Range(0, 3) : (Random.Range(0, 2) == 0 ? player.Level + Random.Range(0, 3) : player.Level - Random.Range(0, 3)));
+            
+            // Hiển thị thông tin cơ bản của monster
+            Debug.Log($"===== THÔNG TIN MONSTER =====");
+            Debug.Log($"Tên: {wildMonster.Base.Name} | Level: {wildMonster.Level} | Type: {wildMonster.Base.Type}");
+            Debug.Log($"HP: {wildMonster.HP}/{wildMonster.MaxHP} | Attack: {wildMonster.Attack} | Defense: {wildMonster.Defense}");
+            Debug.Log($"SpAttack: {wildMonster.SpAttack} | SpDefense: {wildMonster.SpDefense} | Speed: {wildMonster.Speed}");
+            Debug.Log($"=============================");
+            
             onEncountered(monsters.Monster, player, collision);
+        }
+    }
+
+    // Hiển thị thông báo khi đang chạy
+    private void OnGUI()
+    {
+        if (showRunningIndicator && isRunning)
+        {
+            // Tạo một hộp thông báo ở góc màn hình
+            GUI.Box(new Rect(10, 10, 150, 25), "Đang chạy (x" + runSpeedMultiplier + ")");
         }
     }
 }

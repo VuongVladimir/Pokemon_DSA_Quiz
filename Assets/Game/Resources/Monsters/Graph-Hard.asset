@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: Graph-Hard
+  m_EditorClassIdentifier: 
+  monsterName: Graph God Hard
+  description: 
+  frontSprite: {fileID: 21300000, guid: 2edf78f97c0960749953d0cc8c0078e7, type: 3}
+  backSprite: {fileID: 21300000, guid: ea4a49d4580538c44867863f4caa5df1, type: 3}
+  type: 4
+  maxHP: 300
+  attack: 180
+  defense: 100
+  spAttack: 90
+  spDefense: 60
+  speed: 100
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 380aa190c4bd3e044b423f9deb2f4e29, type: 2}
+    level: 15
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: cb4d9a02ad03c6b459fceafb1b106666, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: d3894ccd7001304468d814abb3b1e03f, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 3079695cfc87e964ca2b469b3a9cdd90, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 147b18a372434444a96113a63ff80089, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: af5174d7be84f1d4d843544da1351d69, type: 2}
+    level: 0

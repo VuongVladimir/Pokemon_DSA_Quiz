@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: StackQueue-Medium4
+  m_EditorClassIdentifier: 
+  question: "N\u1EBFu m\u1ED9t Stack \u0111\u1EA7y v\xE0 b\u1EA1n c\u1ED1 g\u1EAFng
+    push th\xEAm ph\u1EA7n t\u1EED, \u0111i\u1EC1u g\xEC x\u1EA3y ra (v\u1EDBi Stack
+    t\u0129nh)?"
+  questionType: 5
+  answers:
+  - correctAnswer: 0
+    answer: Underflow
+  - correctAnswer: 1
+    answer: Overflow
+  - correctAnswer: 0
+    answer: Deadlock
+  - correctAnswer: 0
+    answer: Stack shrink

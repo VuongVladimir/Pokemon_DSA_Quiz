@@ -12,6 +12,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] int power;
     [SerializeField] int accuracy;
     [SerializeField] int pp;
+    [SerializeField] int cooldown;
 
     public string Name { get { return moveName; } }
     public string Description { get { return description; } }
@@ -19,4 +20,5 @@ public class MoveBase : ScriptableObject
     public int Power { get { return power; } }
     public int Accuracy { get { return accuracy; } }
     public int Pp { get { return pp; } }
+    public int Cooldown { get { return cooldown; } }
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: StackQueue-Easy4
+  m_EditorClassIdentifier: 
+  question: "Ph\xE9p to\xE1n enqueue() trong Queue s\u1EBD:"
+  questionType: 5
+  answers:
+  - correctAnswer: 0
+    answer: "X\xF3a ph\u1EA7n t\u1EED \u0111\u1EA7u ti\xEAn"
+  - correctAnswer: 1
+    answer: " Th\xEAm ph\u1EA7n t\u1EED v\xE0o cu\u1ED1i h\xE0ng \u0111\u1EE3i"
+  - correctAnswer: 0
+    answer: "X\xF3a ph\u1EA7n t\u1EED cu\u1ED1i c\xF9ng"
+  - correctAnswer: 0
+    answer: "Th\xEAm ph\u1EA7n t\u1EED v\xE0o \u0111\u1EA7u h\xE0ng \u0111\u1EE3i"

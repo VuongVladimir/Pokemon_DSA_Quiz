@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: Graph-Easy
+  m_EditorClassIdentifier: 
+  monsterName: Graph God Ez
+  description: 
+  frontSprite: {fileID: 21300000, guid: f194ee22cdd7bc848a364b2fd94531ed, type: 3}
+  backSprite: {fileID: 21300000, guid: 644ac5c4e2144db4cadc514fc77869d3, type: 3}
+  type: 4
+  maxHP: 200
+  attack: 90
+  defense: 80
+  spAttack: 70
+  spDefense: 50
+  speed: 100
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 380aa190c4bd3e044b423f9deb2f4e29, type: 2}
+    level: 25
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: b9a26a9bcfae88f499382979ca132788, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: a0f1ffe64b499a74d9f01667a04f37b1, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: c769a309e7d24f94a904eae77df9c5f4, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 64ed8f91b9231874ab47408783d95d23, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: c35045199de5f4846a42f3d6f44339e1, type: 2}
+    level: 0

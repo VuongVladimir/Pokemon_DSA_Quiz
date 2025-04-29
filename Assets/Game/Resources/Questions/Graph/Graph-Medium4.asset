@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Graph-Medium4
+  m_EditorClassIdentifier: 
+  question: "\u0110\u1EC3 ph\xE1t hi\u1EC7n chu tr\xECnh trong \u0111\u1ED3 th\u1ECB
+    c\xF3 h\u01B0\u1EDBng, ch\xFAng ta c\xF3 th\u1EC3 s\u1EED d\u1EE5ng:"
+  questionType: 4
+  answers:
+  - correctAnswer: 0
+    answer: "BFS v\u1EDBi in-degree"
+  - correctAnswer: 1
+    answer: "DFS v\u1EDBi visited v\xE0 recursion stack"
+  - correctAnswer: 0
+    answer: Kruskal
+  - correctAnswer: 0
+    answer: Dijkstra

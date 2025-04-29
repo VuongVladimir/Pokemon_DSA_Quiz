@@ -15,8 +15,16 @@ MonoBehaviour:
   areaName: Grass1
   encounterItems:
   - monster: {fileID: 11400000, guid: 9407b0905ea7f5346b0eefd67ad8c4ad, type: 2}
-    spawnChance: 30
+    spawnChance: 20
   - monster: {fileID: 11400000, guid: baa780f3e15486f42850db07ba304982, type: 2}
-    spawnChance: 30
+    spawnChance: 20
   - monster: {fileID: 11400000, guid: 1362f83cb14cf5a4eadebc1feb4b0fe0, type: 2}
-    spawnChance: 40
+    spawnChance: 20
+  - monster: {fileID: 11400000, guid: d674de71bba8ce14c888decf0cea3601, type: 2}
+    spawnChance: 20
+  - monster: {fileID: 11400000, guid: adc71029904640d4e858e1b29492de41, type: 2}
+    spawnChance: 20
+  - monster: {fileID: 11400000, guid: 11a2df59029e9ec44b5382d490af4730, type: 2}
+    spawnChance: 10
+  - monster: {fileID: 11400000, guid: d674de71bba8ce14c888decf0cea3601, type: 2}
+    spawnChance: 10

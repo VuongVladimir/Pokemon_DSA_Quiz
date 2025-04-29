@@ -96,7 +96,32 @@ public class BattleDialogBox : MonoBehaviour
             else
                 moveTexts[i].color = Color.black;
         }
-        ppText.text = $"PP {move.PP}/{move.Base.Pp}";
+        
+        if (!move.IsReady())
+        {
+            ppText.text = $"COOLDOWN: {move.CurrentCooldown}";
+            ppText.color = Color.red;
+        }
+        else
+        {
+            ppText.text = $"PP {move.PP}/{move.Base.Pp}";
+            ppText.color = Color.black;
+        }
+        TypeText.text = move.Base.Type.ToString();
+    }
+
+    public void SetMoveDetails(string message, Move move)
+    {
+        if (!string.IsNullOrEmpty(message))
+        {
+            ppText.text = message;
+            ppText.color = Color.red;
+        }
+        else
+        {
+            ppText.text = $"PP {move.PP}/{move.Base.Pp}";
+            ppText.color = Color.black;
+        }
         TypeText.text = move.Base.Type.ToString();
     }
 

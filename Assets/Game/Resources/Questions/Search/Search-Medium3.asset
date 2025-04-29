@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Search-Medium3
+  m_EditorClassIdentifier: 
+  question: "Interpolation Search ho\u1EA1t \u0111\u1ED9ng t\u1ED1t nh\u1EA5t khi:"
+  questionType: 6
+  answers:
+  - correctAnswer: 1
+    answer: "C\xE1c ph\u1EA7n t\u1EED ph\xE2n b\u1ED1 \u0111\u1ED3ng \u0111\u1EC1u"
+  - correctAnswer: 0
+    answer: "C\xE1c ph\u1EA7n t\u1EED ho\xE0n to\xE0n ng\u1EABu nhi\xEAn"
+  - correctAnswer: 0
+    answer: "C\xE1c ph\u1EA7n t\u1EED kh\xF4ng s\u1EAFp x\u1EBFp"
+  - correctAnswer: 0
+    answer: "C\xE1c ph\u1EA7n t\u1EED c\xF3 gi\xE1 tr\u1ECB \xE2m"
