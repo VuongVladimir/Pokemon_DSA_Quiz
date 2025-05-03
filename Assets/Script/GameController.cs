@@ -28,6 +28,36 @@ public class GameController : MonoBehaviour
             if (state == GameState.Dialog)
                 state = GameState.FreeRoam;
         };
+        
+        // Đảm bảo kiểm tra file save và đồng bộ hóa đầu tiên
+        EnsureAchievementSyncWithSaveFile();
+        
+        // Tải game nếu có bản lưu
+        LoadGameIfSaveExists();
+    }
+    
+    // Phương thức mới để đảm bảo các thành tựu đồng bộ với file save
+    private void EnsureAchievementSyncWithSaveFile()
+    {
+        if (GameSaveManager.Instance != null)
+        {
+            // Gọi trực tiếp phương thức kiểm tra
+            GameSaveManager.Instance.CheckSaveFileExistence();
+        }
+    }
+    
+    // Tải game từ bản lưu nếu có
+    private void LoadGameIfSaveExists()
+    {
+        if (GameSaveManager.Instance != null && GameSaveManager.Instance.HasSaveFile())
+        {
+            var saveData = GameSaveManager.Instance.LoadGame();
+            if (saveData != null)
+            {
+                GameSaveManager.Instance.ApplySaveData(saveData, playerController);
+                Debug.Log("Đã tải dữ liệu game từ bản lưu");
+            }
+        }
     }
 
     void EndBattle(bool won)
@@ -61,13 +91,32 @@ public class GameController : MonoBehaviour
             if (playerController.player.HP == 0)
             {
                 DeathScene.SetActive(true);
-                Destroy(playerController);
+                // Không hủy controller nữa để có thể tải lại từ bản lưu
+                // Destroy(playerController);
+                
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    SceneManager.LoadScene("SampleScene");
+                    // Tải lại game từ bản lưu nếu có, ngược lại reset scene
+                    if (GameSaveManager.Instance != null && GameSaveManager.Instance.HasSaveFile())
+                    {
+                        DeathScene.SetActive(false);
+                        var saveData = GameSaveManager.Instance.LoadGame();
+                        if (saveData != null)
+                        {
+                            GameSaveManager.Instance.ApplySaveData(saveData, playerController);
+                            Debug.Log("Đã tải lại game từ bản lưu sau khi die");
+                        }
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("SampleScene");
+                    }
                 }
             }
-            playerController.HandleUpdate();
+            else
+            {
+                playerController.HandleUpdate();
+            }
         }
         else if(state == GameState.Battle)
         {

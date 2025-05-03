@@ -20,3 +20,7 @@ MonoBehaviour:
     answer: "Ma tr\u1EADn k\u1EC1 (adjacency matrix)"
   - correctAnswer: 1
     answer: "Danh s\xE1ch k\u1EC1 (adjacency list)"
+  - correctAnswer: 0
+    answer: None
+  - correctAnswer: 0
+    answer: None

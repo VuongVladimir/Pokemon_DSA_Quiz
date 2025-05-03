@@ -15,7 +15,7 @@ MonoBehaviour:
   moveName: "\u0110\xE1nh th\u01B0\u1EDDng"
   description: 
   type: 0
-  power: 10
+  power: 20
   accuracy: 0
   pp: 0
   cooldown: 1

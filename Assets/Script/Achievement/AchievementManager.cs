@@ -44,6 +44,9 @@ public class AchievementManager : MonoBehaviour
     // HashSet lưu trữ ID của các câu hỏi đã trả lời đúng
     private HashSet<string> answeredQuestions = new HashSet<string>();
     
+    // Biến để kiểm tra xem dữ liệu đã được tải chưa trong scene hiện tại
+    private bool hasLoadedData = false;
+    
     private void Awake()
     {
         // Singleton pattern
@@ -59,8 +62,20 @@ public class AchievementManager : MonoBehaviour
         // Khởi tạo các thành tựu nếu chưa có
         InitializeAchievements();
         
-        // Tải thành tựu từ PlayerPrefs nếu có
-        LoadAchievements();
+        // Đặt lại trạng thái hasLoadedData mỗi khi AchievementManager được khởi tạo
+        hasLoadedData = false;
+        
+        // Tải thành tựu từ PlayerPrefs nếu có và chưa từng tải trước đó
+        if (!hasLoadedData)
+        {
+            LoadAchievements();
+            hasLoadedData = true;
+            Debug.Log("Đã tải dữ liệu thành tựu lần đầu tiên.");
+        }
+        else
+        {
+            Debug.Log("Bỏ qua việc tải dữ liệu thành tựu vì đã tải trước đó.");
+        }
         
         // Đếm số lượng câu hỏi theo từng loại
         CountQuestionsByType();
@@ -207,12 +222,21 @@ public class AchievementManager : MonoBehaviour
     }
     
     // Tải thành tựu từ PlayerPrefs
-    private void LoadAchievements()
+    public void LoadAchievements()
     {
+        // Nếu đã tải trong scene này, không tải lại nữa
+        if (hasLoadedData)
+        {
+            Debug.Log("Bỏ qua việc tải thành tựu vì đã tải trước đó trong scene hiện tại.");
+            return;
+        }
+        
+        Debug.Log("Đang tải thành tựu từ PlayerPrefs...");
         foreach (var achievement in typeAchievements)
         {
             string key = $"Achievement_{achievement.type}";
             achievement.correctAnswers = PlayerPrefs.GetInt(key, 0);
+            Debug.Log($"Loaded achievement {achievement.type}: {achievement.correctAnswers}");
         }
         
         // Tải danh sách câu hỏi đã trả lời đúng
@@ -221,7 +245,11 @@ public class AchievementManager : MonoBehaviour
         {
             string[] questions = answeredQuestionsString.Split('|');
             answeredQuestions = new HashSet<string>(questions);
+            Debug.Log($"Loaded {answeredQuestions.Count} answered questions");
         }
+        
+        // Đánh dấu là đã tải trong scene này
+        hasLoadedData = true;
     }
     
     // Lấy thành tựu theo loại
@@ -234,5 +262,19 @@ public class AchievementManager : MonoBehaviour
     public List<TypeAchievement> GetAllAchievements()
     {
         return typeAchievements;
+    }
+
+    // Thêm phương thức này để cho phép các class khác thông báo rằng thành tựu đã được cập nhật
+    public void NotifyAchievementsUpdated()
+    {
+        // Gọi event để thông báo rằng thành tựu đã được cập nhật
+        OnAchievementsUpdated?.Invoke();
+    }
+
+    // Reset trạng thái đã tải (chỉ được gọi khi reset game)
+    public void ResetLoadedState()
+    {
+        hasLoadedData = false;
+        Debug.Log("Đã reset trạng thái tải dữ liệu thành tựu.");
     }
 } 
