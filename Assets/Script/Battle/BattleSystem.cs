@@ -15,6 +15,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleHUD enemyHUD;
     [SerializeField] BattleDialogBox dialogBox;
     [SerializeField] MonsterQuestion monsterQuestion;
+    [SerializeField] MonsterInfoUI monsterInfoUI;
 
     [SerializeField] Movement playerMovement;
     
@@ -57,6 +58,12 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetData(player.Monster);
         enemy.Setup(Enemy);
         enemyHUD.SetData(enemy.Monster);
+
+        // Cập nhật MonsterInfoUI nếu có
+        if (monsterInfoUI != null)
+        {
+            monsterInfoUI.UpdateMonsterInfo();
+        }
 
         Debug.Log(player.Monster.HP);
 

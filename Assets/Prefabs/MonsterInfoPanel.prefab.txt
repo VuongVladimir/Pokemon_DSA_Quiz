@@ -1,0 +1,45 @@
+Hướng dẫn tạo MonsterInfoPanel trong Unity Editor:
+
+1. Tạo một GameObject mới và đặt tên là "MonsterInfoPanel"
+2. Thêm component Image vào GameObject để làm nền cho panel
+3. Thiết lập Color của Image thành màu nền (ví dụ: xanh biển nhạt như trong ảnh)
+4. Thiết lập Anchor và Pivot phù hợp (thường là center)
+
+5. Thêm một GameObject con và đặt tên là "Header"
+   - Thêm component Image để làm nền header
+   - Thêm component Text với nội dung "MONSTER INFO"
+   - Đặt màu sắc và font size phù hợp
+
+6. Thêm các Text UI cho từng thông số:
+   - Tạo GameObject "Name" với Text component
+   - Tạo GameObject "Level" với Text component và text label "Level: "
+   - Tạo GameObject "HP" với Text component và text label "HP: "
+   - Tạo GameObject "ATK" với Text component và text label "ATK: "
+   - Tạo GameObject "DEF" với Text component và text label "DEF: "
+   - Tạo GameObject "SPD" với Text component và text label "SPD: "
+   - Tạo GameObject "SP.ATK" với Text component và text label "SP.ATK: "
+   - Tạo GameObject "SP.DEF" với Text component và text label "SP.DEF: "
+
+7. Thêm Button để đóng panel:
+   - Tạo GameObject với Button component
+   - Thiết lập hình ảnh X hoặc Close
+   - Thêm OnClick event gọi đến GameObject của panel và gọi hàm SetActive(false)
+
+8. Thêm component MonsterInfoUI vào GameObject gốc và kéo thả các tham chiếu:
+   - Thêm tham chiếu monsterUnit đến BattleUnit của enemy
+   - Gán các Text component tương ứng vào các trường monsterNameText, monsterLevelText, etc.
+   - Gán chính GameObject panel này vào trường infoPanel
+
+9. Thêm tham chiếu MonsterInfoUI vào BattleUnit của enemy để xử lý sự kiện click
+
+Bố cục gợi ý:
+- Panel có thể được đặt ở góc phải trên của màn hình
+- Thông tin được chia thành hai cột như hình mẫu của Player Info
+- Cột trái: Level, Exp (thay bằng Name), HP, ATK
+- Cột phải: DEF, SPD, SP.ATK, SP.DEF
+
+Lưu ý khi thiết lập trong Scene:
+1. Đảm bảo panel được thiết lập là inactive (tắt) ban đầu
+2. Chỉnh Canvas để phù hợp với kích thước màn hình
+3. Đảm bảo panel không che khuất các thành phần quan trọng khác trong battle scene
+4. Thiết lập Raycast Target = true cho BattleUnit để có thể nhận sự kiện click 

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class BattleUnit : MonoBehaviour
+public class BattleUnit : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] public MonsterBase _base;
     [SerializeField] int level;
     [SerializeField] bool isPlayer;
+    [SerializeField] MonsterInfoUI monsterInfoUI;
 
     Image image;
     Vector3 originalPos;
@@ -75,5 +77,13 @@ public class BattleUnit : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(image.transform.DOLocalMoveY(originalPos.y - 150f, 0.5f));
         sequence.Join(image.DOFade(0f, 0.5f));
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (monsterInfoUI != null && !isPlayer)
+        {
+            monsterInfoUI.ToggleInfoPanel();
+        }
     }
 }
