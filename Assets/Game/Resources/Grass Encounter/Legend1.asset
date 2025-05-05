@@ -16,7 +16,7 @@ MonoBehaviour:
   encounterItems:
   - monster: {fileID: 11400000, guid: d81844848a3704c458a198e93b9f5a90, type: 2}
     spawnChance: 50
-  - monster: {fileID: 11400000, guid: f288a860bbfa6e3478a088184e2ba9c7, type: 2}
-    spawnChance: 45
   - monster: {fileID: 11400000, guid: 7c83844a6ff75c2439a6f46213e50de1, type: 2}
-    spawnChance: 5
+    spawnChance: 1
+  - monster: {fileID: 11400000, guid: f288a860bbfa6e3478a088184e2ba9c7, type: 2}
+    spawnChance: 49

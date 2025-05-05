@@ -16,8 +16,8 @@ MonoBehaviour:
   encounterItems:
   - monster: {fileID: 11400000, guid: 3408dac49110ca048a0a339a7e020120, type: 2}
     spawnChance: 20
-  - monster: {fileID: 11400000, guid: 086c5cf94c67cdb408494e9790ef7a7c, type: 2}
-    spawnChance: 20
+  - monster: {fileID: 11400000, guid: b5f0d669e6c2d984f96c779aa8d547c0, type: 2}
+    spawnChance: 5
   - monster: {fileID: 11400000, guid: 48a1180223566014fb8c7e492aaf58f9, type: 2}
     spawnChance: 20
   - monster: {fileID: 11400000, guid: b5f0d669e6c2d984f96c779aa8d547c0, type: 2}
@@ -25,6 +25,6 @@ MonoBehaviour:
   - monster: {fileID: 11400000, guid: f617afae19929be4f967e8612ed3d6ce, type: 2}
     spawnChance: 20
   - monster: {fileID: 11400000, guid: d132dd3154c8cf249bb953e8ddd65716, type: 2}
-    spawnChance: 19
-  - monster: {fileID: 11400000, guid: b5f0d669e6c2d984f96c779aa8d547c0, type: 2}
-    spawnChance: 1
+    spawnChance: 20
+  - monster: {fileID: 11400000, guid: 086c5cf94c67cdb408494e9790ef7a7c, type: 2}
+    spawnChance: 15

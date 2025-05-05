@@ -16,12 +16,28 @@ public class Monster
     public int Exp { get; set; }
     public int ExpToNextLevel { get { return Level * Level * 5; } } // Công thức tính kinh nghiệm cần để lên cấp (tuỳ chỉnh)
 
+    // Thêm stat bonus
+    public int MaxHPBonus { get; set; }
+    public int AttackBonus { get; set; }
+    public int DefenseBonus { get; set; }
+    public int SpeedBonus { get; set; }
+    public int SpAttackBonus { get; set; }
+    public int SpDefenseBonus { get; set; }
+
     public Monster(MonsterBase pBase, int pLevel)
     {
         this.Base = pBase;
         this.Level = pLevel;
         HP = MaxHP;
         Exp = 0;
+
+        // Khởi tạo các bonus stat là 0
+        MaxHPBonus = 0;
+        AttackBonus = 0;
+        DefenseBonus = 0;
+        SpeedBonus = 0;
+        SpAttackBonus = 0;
+        SpDefenseBonus = 0;
 
         //Add moves
         Moves = new List<Move>();
@@ -48,12 +64,75 @@ public class Monster
         }
     }
 
-    public int Attack {get { return Mathf.FloorToInt((Base.Attack * Level) / 100f) + 5; } }
-    public int Defense { get { return Mathf.FloorToInt((Base.Defense * Level) / 100f) + 5; } }
-    public int MaxHP { get { return Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 10; } }
-    public int SpAttack { get { return Mathf.FloorToInt((Base.SpAttack * Level) / 100f) + 5; } }
-    public int SpDefense { get { return Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5; } }
-    public int Speed { get { return Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5; } }
+    // Cập nhật các thuộc tính để thêm bonus stats
+    public int Attack {get { return Mathf.FloorToInt((Base.Attack * Level) / 100f) + 5 + AttackBonus; } }
+    public int Defense { get { return Mathf.FloorToInt((Base.Defense * Level) / 100f) + 5 + DefenseBonus; } }
+    public int MaxHP { get { return Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 10 + MaxHPBonus; } }
+    public int SpAttack { get { return Mathf.FloorToInt((Base.SpAttack * Level) / 100f) + 5 + SpAttackBonus; } }
+    public int SpDefense { get { return Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5 + SpDefenseBonus; } }
+    public int Speed { get { return Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5 + SpeedBonus; } }
+
+    // Phương thức tăng chỉ số ngẫu nhiên khi đạt thành tựu
+    public string IncreaseRandomStat()
+    {
+        try
+        {
+            int statChoice = UnityEngine.Random.Range(0, 6);
+            int increaseAmount = 1;
+            string statName = "";
+            
+            switch (statChoice)
+            {
+                case 0: // HP
+                    MaxHPBonus += increaseAmount;
+                    statName = "HP";
+                    break;
+                case 1: // Attack
+                    AttackBonus += increaseAmount;
+                    statName = "Attack";
+                    break;
+                case 2: // Defense
+                    DefenseBonus += increaseAmount;
+                    statName = "Defense";
+                    break;
+                case 3: // Speed
+                    SpeedBonus += increaseAmount;
+                    statName = "Speed";
+                    break;
+                case 4: // Sp. Attack
+                    SpAttackBonus += increaseAmount;
+                    statName = "Special Attack";
+                    break;
+                case 5: // Sp. Defense
+                    SpDefenseBonus += increaseAmount;
+                    statName = "Special Defense";
+                    break;
+                default:
+                    // Trường hợp mặc định
+                    MaxHPBonus += increaseAmount;
+                    statName = "HP";
+                    break;
+            }
+
+            return statName;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Lỗi khi tăng chỉ số ngẫu nhiên: {e.Message}");
+            return "Chỉ số";
+        }
+    }
+    
+    // Reset tất cả bonus stats về 0
+    public void ResetBonusStats()
+    {
+        MaxHPBonus = 0;
+        AttackBonus = 0;
+        DefenseBonus = 0;
+        SpeedBonus = 0;
+        SpAttackBonus = 0;
+        SpDefenseBonus = 0;
+    }
 
     public bool TakeDamage(Move move, Monster attacker, bool correct, float bonusDmg)
     {

@@ -15,8 +15,8 @@ MonoBehaviour:
   monsterName: Sandslash
   description: "\"10 \u0111i\u1EC3m x\xE1c xu\u1EA5t th\u1ED1ng k\xEA nh\u01B0ng
     kh\xF4ng c\xF3 \u0111\u01B0\u1EE3c em :(((\""
-  frontSprite: {fileID: 21300000, guid: f3587a6eaef9f574b8c2fa9db6b5fbe6, type: 3}
-  backSprite: {fileID: 21300000, guid: f4cccf36052ac334888fb68b9ec47b38, type: 3}
+  frontSprite: {fileID: 21300000, guid: 885319118ec2a5640b0d0abdea54992f, type: 3}
+  backSprite: {fileID: 21300000, guid: e2707e6ffb0b68942909ad9e5929317f, type: 3}
   type: 0
   maxHP: 100
   attack: 90

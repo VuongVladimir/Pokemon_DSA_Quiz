@@ -132,35 +132,148 @@ public class AchievementManager : MonoBehaviour
     // Cập nhật thành tựu khi trả lời đúng câu hỏi
     public void UpdateAchievement(MonsterType questionType, string questionId)
     {
-        // Kiểm tra xem câu hỏi đã được trả lời đúng trước đó chưa
-        string key = $"{questionType}_{questionId}";
-        if (answeredQuestions.Contains(key))
+        try 
         {
-            // Đã trả lời trước đó, không cập nhật
-            return;
-        }
-        
-        // Thêm câu hỏi vào danh sách đã trả lời
-        answeredQuestions.Add(key);
-        
-        QuestionType type = ConvertToQuestionType(questionType);
-        
-        foreach (var achievement in typeAchievements)
-        {
-            if (achievement.type == type)
+            // Kiểm tra xem câu hỏi đã được trả lời đúng trước đó chưa
+            string key = $"{questionType}_{questionId}";
+            if (answeredQuestions.Contains(key))
             {
-                achievement.correctAnswers++;
-                
-                // Lưu thành tựu vào PlayerPrefs
-                SaveAchievements();
-                
-                // Thông báo thành tựu đã cập nhật
-                OnAchievementsUpdated?.Invoke();
-                
+                // Đã trả lời trước đó, không cập nhật
                 return;
             }
+            
+            // Thêm câu hỏi vào danh sách đã trả lời
+            answeredQuestions.Add(key);
+            
+            QuestionType type = ConvertToQuestionType(questionType);
+            
+            foreach (var achievement in typeAchievements)
+            {
+                if (achievement.type == type)
+                {
+                    achievement.correctAnswers++;
+                    
+                    // Lưu thành tựu vào PlayerPrefs
+                    SaveAchievements();
+                    
+                    try
+                    {
+                        // Lấy Player Monster hiện tại
+                        Monster playerMonster = GetCurrentPlayerMonster();
+                        if (playerMonster != null)
+                        {
+                            // Tăng ngẫu nhiên một stat
+                            IncreaseRandomStat(playerMonster);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("playerMonster là null trong UpdateAchievement");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError($"Lỗi khi tăng stat: {e.Message}");
+                    }
+                    
+                    // Thông báo thành tựu đã cập nhật
+                    OnAchievementsUpdated?.Invoke();
+                    
+                    return;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Lỗi khi cập nhật thành tựu: {e.Message}");
         }
     }
+    
+    // Hàm lấy Monster hiện tại của người chơi
+    private Monster GetCurrentPlayerMonster()
+    {
+        BattleSystem battleSystem = FindObjectOfType<BattleSystem>();
+        if (battleSystem != null)
+        {
+            try
+            {
+                // Truy cập player field thông qua reflection để tránh lỗi
+                var playerField = typeof(BattleSystem).GetField("player", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+                if (playerField != null)
+                {
+                    BattleUnit playerUnit = playerField.GetValue(battleSystem) as BattleUnit;
+                    if (playerUnit != null && playerUnit.Monster != null)
+                    {
+                        return playerUnit.Monster;
+                    }
+                }
+                
+                // Nếu không thể lấy trực tiếp, thử tìm trong hierarchy
+                Transform playerUnitTransform = battleSystem.transform.Find("PlayerUnit");
+                if (playerUnitTransform != null)
+                {
+                    BattleUnit playerUnit = playerUnitTransform.GetComponent<BattleUnit>();
+                    if (playerUnit != null && playerUnit.Monster != null)
+                    {
+                        return playerUnit.Monster;
+                    }
+                }
+                
+                // Thử tìm trong các con của BattleSystem
+                BattleUnit[] battleUnits = battleSystem.GetComponentsInChildren<BattleUnit>();
+                foreach (var unit in battleUnits)
+                {
+                    if (unit.gameObject.name.Contains("Player") && unit.Monster != null)
+                    {
+                        return unit.Monster;
+                    }
+                }
+                
+                Debug.LogWarning("Không thể tìm thấy BattleUnit của người chơi");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Lỗi khi lấy Monster hiện tại: {e.Message}");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Không tìm thấy BattleSystem trong scene");
+        }
+        
+        return null;
+    }
+    
+    // Hàm tăng ngẫu nhiên một chỉ số cơ bản
+    private bool IncreaseRandomStat(Monster monster)
+    {
+        if (monster == null) 
+        {
+            Debug.LogWarning("Monster là null trong IncreaseRandomStat");
+            return false;
+        }
+        
+        try
+        {
+            // Sử dụng phương thức IncreaseRandomStat của Monster
+            string statName = monster.IncreaseRandomStat();
+            
+            if (string.IsNullOrEmpty(statName))
+            {
+                Debug.LogWarning("Không thể tăng stat (tên stat trả về trống)");
+                return false;
+            }
+            
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Lỗi trong IncreaseRandomStat: {e.Message}");
+            return false;
+        }
+    }
+    
+    
+    
     
     // Chuyển đổi từ MonsterType sang QuestionType
     private QuestionType ConvertToQuestionType(MonsterType monsterType)

@@ -15,8 +15,8 @@ MonoBehaviour:
   areaName: Legend2
   encounterItems:
   - monster: {fileID: 11400000, guid: 93beed499e75cf441849f7b67485a038, type: 2}
-    spawnChance: 45
-  - monster: {fileID: 11400000, guid: 4e1c978d83417a74d8fe055f4be49c40, type: 2}
     spawnChance: 50
   - monster: {fileID: 11400000, guid: 6b1d955d90d5b02498d897dcfa044050, type: 2}
-    spawnChance: 5
+    spawnChance: 1
+  - monster: {fileID: 11400000, guid: 4e1c978d83417a74d8fe055f4be49c40, type: 2}
+    spawnChance: 49

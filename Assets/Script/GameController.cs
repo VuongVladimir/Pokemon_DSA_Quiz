@@ -29,11 +29,15 @@ public class GameController : MonoBehaviour
                 state = GameState.FreeRoam;
         };
         
-        // Đảm bảo kiểm tra file save và đồng bộ hóa đầu tiên
-        EnsureAchievementSyncWithSaveFile();
-        
-        // Tải game nếu có bản lưu
-        LoadGameIfSaveExists();
+        // Sử dụng phương thức mới để xử lý khi game bắt đầu
+        if (GameSaveManager.Instance != null)
+        {
+            GameSaveManager.Instance.HandleGameStart(playerController);
+        }
+        else
+        {
+            Debug.LogError("GameSaveManager.Instance là null trong GameController.Start()");
+        }
     }
     
     // Phương thức mới để đảm bảo các thành tựu đồng bộ với file save
@@ -46,18 +50,12 @@ public class GameController : MonoBehaviour
         }
     }
     
-    // Tải game từ bản lưu nếu có
+    // NÊN XÓA, không sử dụng nữa vì đã được thay thế bởi HandleGameStart
     private void LoadGameIfSaveExists()
     {
-        if (GameSaveManager.Instance != null && GameSaveManager.Instance.HasSaveFile())
-        {
-            var saveData = GameSaveManager.Instance.LoadGame();
-            if (saveData != null)
-            {
-                GameSaveManager.Instance.ApplySaveData(saveData, playerController);
-                Debug.Log("Đã tải dữ liệu game từ bản lưu");
-            }
-        }
+        // Phương thức này không được sử dụng nữa
+        // Giữ lại để tránh lỗi nếu có mã khác tham chiếu đến nó
+        Debug.Log("LoadGameIfSaveExists đã không còn được sử dụng, thay vào đó dùng HandleGameStart");
     }
 
     void EndBattle(bool won)
@@ -91,8 +89,6 @@ public class GameController : MonoBehaviour
             if (playerController.player.HP == 0)
             {
                 DeathScene.SetActive(true);
-                // Không hủy controller nữa để có thể tải lại từ bản lưu
-                // Destroy(playerController);
                 
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
@@ -109,6 +105,14 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
+                        // Không có bản lưu, reset toàn bộ game
+                        if (playerController.player != null)
+                        {
+                            // Reset tất cả bonus stats về 0 trước khi tải lại scene
+                            playerController.player.ResetBonusStats();
+                            Debug.Log("Reset tất cả bonus stats về 0 trước khi tải lại scene");
+                        }
+                        
                         SceneManager.LoadScene("SampleScene");
                     }
                 }

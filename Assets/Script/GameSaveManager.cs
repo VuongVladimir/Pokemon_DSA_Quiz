@@ -16,6 +16,14 @@ public class PlayerSaveData
     public int exp;
     public int hp;
     public int maxHp;
+    
+    // Bonus stats - thêm mới
+    public int maxHPBonus;
+    public int attackBonus;
+    public int defenseBonus;
+    public int speedBonus;
+    public int spAttackBonus;
+    public int spDefenseBonus;
 }
 
 [Serializable]
@@ -111,7 +119,15 @@ public class GameSaveManager : MonoBehaviour
                     level = playerMovement.player.Level,
                     exp = playerMovement.player.Exp,
                     hp = playerMovement.player.HP,
-                    maxHp = playerMovement.player.MaxHP
+                    maxHp = playerMovement.player.MaxHP,
+                    
+                    // Lưu bonus stats
+                    maxHPBonus = playerMovement.player.MaxHPBonus,
+                    attackBonus = playerMovement.player.AttackBonus,
+                    defenseBonus = playerMovement.player.DefenseBonus,
+                    speedBonus = playerMovement.player.SpeedBonus,
+                    spAttackBonus = playerMovement.player.SpAttackBonus,
+                    spDefenseBonus = playerMovement.player.SpDefenseBonus
                 },
                 
                 // Lưu thành tựu
@@ -178,6 +194,30 @@ public class GameSaveManager : MonoBehaviour
         return null;
     }
     
+    // Xóa file save game
+    public void DeleteSaveFile()
+    {
+        try
+        {
+            if (File.Exists(saveFilePath))
+            {
+                File.Delete(saveFilePath);
+                Debug.Log($"Đã xóa file save tại: {saveFilePath}");
+                
+                // Xóa thành tựu trong PlayerPrefs
+                ResetAchievementData();
+            }
+            else
+            {
+                Debug.Log("Không có file save để xóa");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Lỗi khi xóa file save: {e.Message}");
+        }
+    }
+    
     // Áp dụng dữ liệu đã tải vào game
     public void ApplySaveData(GameSaveData saveData, Movement playerMovement)
     {
@@ -196,6 +236,14 @@ public class GameSaveManager : MonoBehaviour
             player.Exp = saveData.player.exp;
             player.HP = saveData.player.hp;
             
+            // Cập nhật bonus stats từ file save
+            player.MaxHPBonus = saveData.player.maxHPBonus;
+            player.AttackBonus = saveData.player.attackBonus;
+            player.DefenseBonus = saveData.player.defenseBonus;
+            player.SpeedBonus = saveData.player.speedBonus;
+            player.SpAttackBonus = saveData.player.spAttackBonus;
+            player.SpDefenseBonus = saveData.player.spDefenseBonus;
+            
             // QUAN TRỌNG: KHÔNG khôi phục thành tựu từ file save
             // Thay vào đó, tải thành tựu từ PlayerPrefs để tránh ghi đè
             if (AchievementManager.Instance != null)
@@ -208,6 +256,39 @@ public class GameSaveManager : MonoBehaviour
                 
                 Debug.Log("Đã tải thành tựu từ PlayerPrefs thay vì từ file save");
             }
+        }
+    }
+    
+    // Hàm mới: Tạo nhân vật mới nếu không có file save
+    public void CreateNewCharacter(Movement playerMovement)
+    {
+        if (playerMovement != null && playerMovement.player != null)
+        {
+            // Reset lại tất cả các bonus stats về 0
+            playerMovement.player.ResetBonusStats();
+            
+            Debug.Log("Đã tạo nhân vật mới với bonus stats bằng 0");
+        }
+    }
+    
+    // Kiểm tra và xử lý khi game bắt đầu
+    public void HandleGameStart(Movement playerMovement)
+    {
+        if (HasSaveFile())
+        {
+            // Nếu có file save, tải nó
+            var saveData = LoadGame();
+            if (saveData != null)
+            {
+                ApplySaveData(saveData, playerMovement);
+                Debug.Log("Đã tải dữ liệu game từ bản lưu");
+            }
+        }
+        else
+        {
+            // Nếu không có file save, tạo nhân vật mới
+            CreateNewCharacter(playerMovement);
+            Debug.Log("Không tìm thấy file save, tạo nhân vật mới");
         }
     }
 } 

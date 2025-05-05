@@ -16,6 +16,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleDialogBox dialogBox;
     [SerializeField] MonsterQuestion monsterQuestion;
     [SerializeField] MonsterInfoUI monsterInfoUI;
+    [SerializeField] GameObject victoryPanel;
 
     [SerializeField] Movement playerMovement;
     
@@ -49,8 +50,19 @@ public class BattleSystem : MonoBehaviour
         {
             battleMusicController.StartBattle();
         }
-        
-        StartCoroutine(SetupBattle(new Monster(Enemy, Player.Level <= 5 ? Player.Level + Random.Range(0, 3): (Random.Range(0, 2) == 0 ? Player.Level + Random.Range(0, 3): Player.Level - Random.Range(0, 3))), Player));
+        int monsterLevel;
+        if(Enemy.Name == "Boss")
+        {
+            monsterLevel = 50;
+            if(Player.Level >= 50)
+            {
+                monsterLevel = Player.Level + Random.Range(0, 3);
+            }
+        }
+        else {
+            monsterLevel = Player.Level <= 5 ? Player.Level + Random.Range(0, 3): (Random.Range(0, 2) == 0 ? Player.Level + Random.Range(0, 5): Player.Level - Random.Range(0, 3));
+        }
+        StartCoroutine(SetupBattle(new Monster(Enemy, monsterLevel), Player));
     }
 
     public IEnumerator SetupBattle(Monster Enemy, Monster Player){
@@ -189,7 +201,28 @@ public class BattleSystem : MonoBehaviour
             }
             
             yield return new WaitForSeconds(2f);
-            onBattleOver(true);
+
+            // Kiểm tra xem có phải đánh bại Boss không
+            if (enemy.Monster.Base.Name == "Boss")
+            {
+                // Hiển thị victory panel
+                if (victoryPanel != null)
+                {
+                    victoryPanel.SetActive(true);
+                    
+                    // Bắt đầu coroutine đợi người chơi nhấn phím để restart game
+                    StartCoroutine(WaitForRestartInput());
+                }
+                else
+                {
+                    Debug.LogError("Victory Panel is not assigned!");
+                    onBattleOver(true);
+                }
+            }
+            else
+            {
+                onBattleOver(true);
+            }
         }
         else
         {
@@ -203,6 +236,10 @@ public class BattleSystem : MonoBehaviour
         // Công thức: exp = (level của monster bị đánh bại * hệ số cơ bản)
         // Hệ số cơ bản có thể điều chỉnh để cân bằng game
         int baseExpYield = 10; // Hệ số cơ bản
+        if(defeatedMonster.Base.Name == "Zapdos" || defeatedMonster.Base.Name == "Articuno" || defeatedMonster.Base.Name == "Moltres")
+        {
+            baseExpYield = 50; // Hệ số cơ bản cho Pkm huyền thoại
+        }
         return defeatedMonster.Level * baseExpYield;
     }
 
@@ -469,5 +506,26 @@ public class BattleSystem : MonoBehaviour
                 PlayerAction();
             }
         }
+    }
+
+    // Coroutine mới để đợi người chơi nhấn phím để restart game
+    private IEnumerator WaitForRestartInput()
+    {
+        // Đợi người chơi nhấn phím Z để restart game
+        while (!Input.GetKeyDown(KeyCode.Z))
+        {
+            yield return null;
+        }
+        
+        // Xóa bản save trước khi restart game
+        if (GameSaveManager.Instance != null)
+        {
+            GameSaveManager.Instance.DeleteSaveFile();
+            Debug.Log("Đã xóa file save khi restart game sau khi đánh bại Boss");
+        }
+        
+        // Restart game bằng cách tải lại scene hiện tại
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }

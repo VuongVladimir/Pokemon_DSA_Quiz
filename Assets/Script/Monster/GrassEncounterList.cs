@@ -13,9 +13,15 @@ public class GrassEncounterList : ScriptableObject
 
     public MonsterBase GetRandomMonster()
     {
-        float randomValue = Random.Range(0f, 100f);
+        float totalChance = 0;
+        foreach (var item in encounterItems)
+        {
+            totalChance += item.spawnChance;
+        }
+        
+        float randomValue = Random.Range(0f, totalChance+1f);
         float currentProbability = 0f;
-
+        
         foreach (var item in encounterItems)
         {
             currentProbability += item.spawnChance;
@@ -24,8 +30,7 @@ public class GrassEncounterList : ScriptableObject
                 return item.monster;
             }
         }
-
-        // Fallback in case probabilities don't add up to 100
+        
         return encounterItems[0].monster;
     }
 }
